@@ -33,7 +33,7 @@ class Account(object):
         self.username = username
         self.email = email
 
-        #Hashing password
+        # Hashing password
         salt = os.urandom(32)
         key = hashlib.pbkdf2_hmac('sha256', password.encode('utf-8'), salt, 100)
         
@@ -70,6 +70,7 @@ class AccountList(Resource):
         account = Account(username=args['username'], email=args['email'], password=args['password'])
         db.collection('Accounts').add(account.to_dict())
         return account.to_dict(), 201
+
 
 # Class for defining GET(by ID), PUT and DELETE functions
 class AccountListById(Resource):
